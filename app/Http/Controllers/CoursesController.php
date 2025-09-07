@@ -38,4 +38,16 @@ class CoursesController extends Controller
             'course' => new CoursesResourse($course)
         ]);
     }
+
+    public function destroy($id)
+    {
+        $course = Courses::findOrFail($id);
+        $course->delete();
+
+        return response()->json([
+            'status'  => 'success',
+            'message' => 'Course deleted successfully'
+        ], 200);
+
+    }
 }
