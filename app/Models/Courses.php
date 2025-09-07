@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Courses extends Model
 {
     protected $fillable = [
+        'image',
         'title',
+        'about',
         'price',
         'time',
         'days',
