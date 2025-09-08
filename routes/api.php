@@ -19,11 +19,6 @@ Route::controller(AuthController::class)->group(function () {
 Route::controller(CoursesController::class)->group(function () {
     Route::post('/create-course',  'createNewCourse');
     Route::get('/courses/{id}',  'getCourseById');
-<<<<<<< HEAD
     Route::get('/getall-course',  'getAllCourses');
-=======
-    Route::get('/getall-course',  'getAllCourse');
     Route::delete('/courses/{id}', 'destroy');
-
->>>>>>> 1f3e0eb (سلام علیکم)
 });
