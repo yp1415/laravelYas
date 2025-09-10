@@ -26,6 +26,12 @@ class User extends Authenticatable
         'mobile',
         'password',
     ];
+    public function courses()
+    {
+        return $this->belongsToMany(Courses::class, 'course_student', 'user_id', 'course_id')
+            ->withPivot('created_at');
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.

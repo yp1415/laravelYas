@@ -11,10 +11,10 @@ class AuthController extends Controller
 {
     public function register(UserRequest $request)
     {
-
+        
         $user = User::create([
             'name' => $request->name,
-            'email' =>$request->email,
+            'mobile' =>$request->mobile,
             'password' => Hash::make($request->password),
         ]);
 

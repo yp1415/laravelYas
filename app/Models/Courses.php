@@ -19,4 +19,10 @@ class Courses extends Model
         'students_count',
         'prerequisite'
     ];
+
+    public function students()
+    {
+        return $this->belongsToMany(User::class, 'course_student', 'course_id', 'user_id')
+                    ->withTimestamps();
+    }
 }

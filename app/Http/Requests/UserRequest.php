@@ -20,22 +20,20 @@ class UserRequest extends ParentRequest
      */
     public function rules(): array
     {
-
         switch ($this->route()->getName()) {
             case 'login':
                 return [
-                    'email' => 'required|email',
-                    'password' => 'required',
+                    'email'    => ['required', 'email'],
+                    'password' => ['required'],
                 ];
             case 'register':
             return [
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|unique:users,email',
-                'password' => 'required|string|min:8|confirmed',
+                'name'        => ['required', 'string', 'max:255'],
+                'email'       => ['required', 'string', 'email', 'unique:users,email'],
+                'password'    => ['required', 'string', 'min:8', 'confirmed'],
             ];
                 default:
                 return [];
         }
-
     }
 }

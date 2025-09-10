@@ -29,7 +29,7 @@ class CoursesController extends Controller
             'course' => new CoursesResourse($course)
         ], 201);
     }
-
+    
     public function getCourseById($id)
     {
         $course = Courses::findOrFail($id);

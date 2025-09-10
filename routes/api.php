@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +18,24 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login')->name('login');
 });
 
-Route::controller(CoursesController::class)->group(function () {
-    Route::post('/create-course',  'createNewCourse');
-    Route::get('/courses/{id}',  'getCourseById');
-    Route::get('/getall-course',  'getAllCourses');
-    Route::delete('/courses/{id}', 'destroy');
+Route::controller(CoursesController::class)
+    ->prefix("course")
+    ->group(function () {
+    Route::post('/create', 'createNewCourse');
+    Route::get('/getall', 'getAllCourses');
+    Route::get('/{id}', 'getCourseById');
+    Route::delete('/{id}', 'destroy');
+    Route::put('/{id}', 'destroy');
 });
+
+
+Route::controller(UserController::class)
+    ->prefix("user")
+    ->group(function () {
+    Route::get('/getall',  'GetAllUser');
+    Route::post('/create',  'createNewUser');
+    Route::delete('/{id}', 'destroy');
+});
+
+
+Route::post('/SubmitCourse/{id}', [EnrollmentController::class, 'submitStudentInCourse'])->middleware('auth:sanctum');
